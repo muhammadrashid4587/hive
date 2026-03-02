@@ -112,7 +112,7 @@ uv run python -c "import litellm; print('✓ litellm OK')"
 
 ### API Keys
 
-We recommend using quickstart.sh for LLM API credential setup and /hive-credentials for the tools credentials
+We recommend using quickstart.sh for LLM API credential setup. Tool credentials can be configured through your Aden dashboard.
 
 ## Running Agents
 

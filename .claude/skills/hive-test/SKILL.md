@@ -17,8 +17,7 @@ Test agents iteratively: execute, analyze failures, fix, resume from checkpoint,
 ## Prerequisites
 
 1. Agent package at `exports/{agent_name}/` (built with `/hive-create`)
-2. Credentials configured (`/hive-credentials`)
-3. `ANTHROPIC_API_KEY` set (or appropriate LLM provider key)
+2. LLM provider configured in `.hive/configuration.json`
 
 **Path distinction** (critical — don't confuse these):
 - `exports/{agent_name}/` — agent source code (edit here)
@@ -290,7 +289,7 @@ Use the analysis from Phase 3 to determine what to fix and where.
 | **Prompt issue** — LLM produces wrong output format, misses instructions | Node `system_prompt` | `exports/{agent}/nodes/__init__.py` |
 | **Code bug** — TypeError, KeyError, logic error in Python | Agent code | `exports/{agent}/agent.py`, `nodes/__init__.py` |
 | **Graph issue** — wrong routing, missing edge, bad condition_expr | Edges, node config | `exports/{agent}/agent.py` |
-| **Tool issue** — MCP tool fails, wrong config, missing credential | Tool config | `exports/{agent}/mcp_servers.json`, `/hive-credentials` |
+| **Tool issue** — MCP tool fails, wrong config, missing credential | Tool config | `exports/{agent}/mcp_servers.json` |
 | **Goal issue** — success criteria too strict/vague, wrong constraints | Goal definition | `exports/{agent}/agent.py` (goal section) |
 | **Test issue** — test expectations don't match actual agent behavior | Test code | `exports/{agent}/tests/test_*.py` |
 
@@ -320,7 +319,7 @@ Edit(
 - Reduce `max_iterations` in loop_config or fix the prompt to converge faster
 
 **API_ERROR** (connection, rate limit, auth):
-- Verify credentials with `/hive-credentials`
+- Verify API key environment variables
 - Check MCP server configuration
 
 ---
@@ -777,7 +776,7 @@ uv run hive run exports/{agent_name} \
 | Access `result.output["key"]` directly | Use `result.output.get("key")` |
 | Fix random things hoping tests pass | Analyze L2/L3 logs to find root cause first |
 | Write 30+ tests | Write 8-15 focused tests |
-| Skip credential check | Use `/hive-credentials` before testing |
+| Skip credential check | Verify credentials are configured before testing |
 | Confuse `exports/` with `~/.hive/agents/` | Code in `exports/`, runtime data in `~/.hive/` |
 | Use `run_tests` for iterative debugging | Use headless CLI with checkpoints for iterative debugging |
 | Use headless CLI for final regression | Use `run_tests` for automated regression |
@@ -935,6 +934,6 @@ exports/{agent_name}/
 | Agent built, ready to test | `/hive-create` | `/hive-test` | Generate tests, start loop |
 | Prompt fix needed | `/hive-test` Phase 4 | Direct edit | Edit `nodes/__init__.py`, resume |
 | Goal definition wrong | `/hive-test` Phase 4 | `/hive-create` | Update goal, may need rebuild |
-| Missing credentials | `/hive-test` Phase 3 | `/hive-credentials` | Set up credentials |
+| Missing credentials | `/hive-test` Phase 3 | Credential config | Set up credentials |
 | Complex runtime failure | `/hive-test` Phase 3 | `/hive-debugger` | Deep L1/L2/L3 analysis |
 | All tests pass | `/hive-test` Phase 6 | Done | Agent validated |

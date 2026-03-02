@@ -826,11 +826,7 @@ cd /home/timothy/oss/hive && PYTHONPATH=exports uv run python -m AGENT_NAME vali
 │                                                                             │
 │  NEXT STEPS:                                                                │
 │                                                                             │
-│  1. SET UP CREDENTIALS (if agent uses tools like web_search, send_email):  │
-│                                                                             │
-│     /hive-credentials --agent AGENT_NAME                                    │
-│                                                                             │
-│  2. RUN YOUR AGENT:                                                         │
+│  1. RUN YOUR AGENT:                                                         │
 │                                                                             │
 │     hive tui                                                                │
 │                                                                             │

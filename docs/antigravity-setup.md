@@ -91,7 +91,6 @@ Skills are guides (workflow, building, testing) in `.agent/skills/` (they point 
 | **hive-create** | Step-by-step agent construction |
 | **hive-patterns** | Patterns and best practices |
 | **hive-test** | Goal-based evaluation and testing |
-| **hive-credentials** | Set up and manage agent credentials |
 
 ---
 
@@ -138,7 +137,7 @@ Check the Hive + Antigravity integration:
 
 1. MCP: List available MCP servers/tools. Confirm that "agent-builder" and "tools" (or equivalent) are connected. If not, tell the user to run ./scripts/setup-antigravity-mcp.sh from the hive repo root, then restart Antigravity (see docs/antigravity-setup.md).
 
-2. Skills: Confirm that the project has .agent/skills/ (or .claude/skills/) with: hive, hive-concepts, hive-create, hive-patterns, hive-test, hive-credentials.
+2. Skills: Confirm that the project has .agent/skills/ (or .claude/skills/) with: hive, hive-concepts, hive-create, hive-patterns, hive-test.
 
 3. Result: Reply with PASS (MCP + skills OK), PARTIAL (only skills or only MCP), or FAIL (neither), and one line on what to fix if not PASS.
 ```
@@ -182,7 +181,7 @@ From the **repo root**:
 
 ```bash
 test -f .agent/mcp_config.json && echo "OK: mcp_config.json" || echo "MISSING"
-for s in hive hive-concepts hive-create hive-patterns hive-test hive-credentials; do
+for s in hive hive-concepts hive-create hive-patterns hive-test; do
   test -L .agent/skills/$s && test -d .agent/skills/$s && echo "OK: $s" || echo "BROKEN: $s"
 done
 ```

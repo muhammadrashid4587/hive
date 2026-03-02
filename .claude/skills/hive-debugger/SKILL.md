@@ -421,12 +421,8 @@ Based on the issue category identified, provide specific fix recommendations usi
 3. Consider caching results
 
 **If auth failure:**
-1. Check credentials using:
-   ```bash
-   /hive-credentials --agent {agent_name}
-   ```
-2. Verify API key environment variables
-3. Update `mcp_servers.json` if needed
+1. Verify API key environment variables
+2. Update `mcp_servers.json` if needed
 
 **If timeout:**
 1. Increase timeout in `mcp_servers.json`:

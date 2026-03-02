@@ -11,7 +11,6 @@ metadata:
     - hive-create
     - hive-patterns
     - hive-test
-    - hive-credentials
     - hive-debugger
 ---
 
@@ -27,7 +26,6 @@ Use AskUserQuestion with these options:
 - "Test an existing agent" → Then invoke /hive-test
 - "Learn agent concepts" → Then invoke /hive-concepts
 - "Optimize agent design" → Then invoke /hive-patterns
-- "Set up credentials" → Then invoke /hive-credentials
 - "Debug a failing agent" → Then invoke /hive-debugger
 - "Other" (please describe what you want to achieve)
 ```
@@ -45,8 +43,7 @@ This workflow orchestrates specialized skills to take you from initial concept t
 1. **Understand Concepts** → `/hive-concepts` (optional)
 2. **Build Structure** → `/hive-create`
 3. **Optimize Design** → `/hive-patterns` (optional)
-4. **Setup Credentials** → `/hive-credentials` (if agent uses tools requiring API keys)
-5. **Test & Validate** → `/hive-test`
+4. **Test & Validate** → `/hive-test`
 6. **Debug Issues** → `/hive-debugger` (if agent fails at runtime)
 
 ## When to Use This Workflow
@@ -68,7 +65,6 @@ Use this meta-skill when:
 "Build a new agent" → hive-create
 "Optimize my agent design" → hive-patterns
 "Need client-facing nodes or feedback loops" → hive-patterns
-"Set up API keys for my agent" → hive-credentials
 "Test my agent" → hive-test
 "My agent is failing/stuck/has errors" → hive-debugger
 "Not sure what I need" → Read phases below, then decide
@@ -362,12 +358,6 @@ hive (meta-skill)
     │   ├── Fan-out/fan-in parallel execution
     │   └── Context management and anti-patterns
     │
-    ├── hive-credentials (utility)
-    │   ├── Detects missing credentials
-    │   ├── Offers auth method choices (Aden OAuth, direct API key)
-    │   ├── Stores securely in ~/.hive/credentials
-    │   └── Validates with health checks
-    │
     ├── hive-test (validation)
     │   ├── Reads agent goal
     │   ├── Generates tests
@@ -484,8 +474,7 @@ This workflow provides a proven path from concept to production-ready agent:
 1. **Learn** with `/hive-concepts` → Understand fundamentals (optional)
 2. **Build** with `/hive-create` → Get validated structure
 3. **Optimize** with `/hive-patterns` → Apply best practices (optional)
-4. **Configure** with `/hive-credentials` → Set up API keys (if needed)
-5. **Test** with `/hive-test` → Get verified functionality
+4. **Test** with `/hive-test` → Get verified functionality
 6. **Debug** with `/hive-debugger` → Fix runtime issues (if needed)
 
 The workflow is **flexible** - skip phases as needed, iterate freely, and adapt to your specific requirements. The goal is **production-ready agents** built with **consistent, repeatable processes**.

@@ -1,28 +1,30 @@
-import pandas as pd
 import io
 import json
-import os
+
+import pandas as pd
+
 
 def extract_tickers(json_file):
     try:
-        with open(json_file, 'r') as f:
+        with open(json_file) as f:
             data = json.load(f)
-        
-        content = data.get('content', '')
+
+        content = data.get("content", "")
         if not content:
             return []
-        
+
         dfs = pd.read_html(io.StringIO(content))
         for df in dfs:
-            if 'Symbol' in df.columns:
-                tickers = df['Symbol'].unique().tolist()
-                return [str(t).strip().replace('.', '-') for t in tickers if isinstance(t, str)]
-    except Exception as e:
+            if "Symbol" in df.columns:
+                tickers = df["Symbol"].unique().tolist()
+                return [str(t).strip().replace(".", "-") for t in tickers if isinstance(t, str)]
+    except Exception:
         pass
     return []
 
+
 # Manually trigger extraction logic since I can't run python directly easily
-# I will read the file and do it in my head/logic if needed, 
+# I will read the file and do it in my head/logic if needed,
 # but I can also just list the tickers I see in the preview.
 # However, I must return ALL tickers.
 

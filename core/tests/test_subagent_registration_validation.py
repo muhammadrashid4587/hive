@@ -5,7 +5,7 @@ Validates that all node IDs listed in a node's sub_agents field
 are actually registered in the graph's nodes list.
 """
 
-from framework.graph.edge import EdgeCondition, EdgeSpec, GraphSpec
+from framework.graph.edge import GraphSpec
 from framework.graph.node import NodeSpec
 
 

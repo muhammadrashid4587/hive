@@ -352,7 +352,7 @@ class GraphExecutor:
             )
             summary_budget = max(1024, max_tokens // 2)
             try:
-                response = await self._llm.acomplete(
+                response = await self.llm.acomplete(
                     messages=[{"role": "user", "content": prompt}],
                     system=(
                         "You are a conversation compactor. Write a detailed "
@@ -1448,7 +1448,7 @@ class GraphExecutor:
                             # Step 2: LLM compaction (>95%)
                             if (
                                 continuous_conversation.usage_ratio() > 0.95
-                                and self._llm is not None
+                                and self.llm is not None
                             ):
                                 self.logger.info(
                                     "   LLM phase-boundary compaction (%.0f%% usage)",
